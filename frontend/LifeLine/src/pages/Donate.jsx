@@ -33,7 +33,7 @@ const Donate = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/donor/create", form, {
+      const res = await axios.post("https://lifeline-backend-lcwo.onrender.com/api/donor/create", form, {
         withCredentials: true,
       });
       console.log("Success:", res.data);

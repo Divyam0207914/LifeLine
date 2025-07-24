@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const backendUrl = "http://localhost:5000"; // Use .env in production
+const backendUrl = "https://lifeline-backend-lcwo.onrender.com"; // Use .env in production
 
 export default function Donors() {
   const [donors, setDonors] = useState([]);

@@ -61,7 +61,7 @@ const UserProfile = () => {
     const fetchReceivedRequests = async () => {
       try {
         const res = await axiosInstance.get(
-          "http://localhost:5000/api/request-log/received-requests",
+          "https://lifeline-backend-lcwo.onrender.com/api/request-log/received-requests",
           {
             withCredentials: true,
           }
