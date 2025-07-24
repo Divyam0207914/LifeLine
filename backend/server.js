@@ -18,7 +18,7 @@ connectDB();
 
 // CORS configuration
 const corsOptions = {
-  origin: "https://lifeline-vert.vercel.app/", // your frontend's origin
+  origin: "https://lifeline-vert.vercel.app", // your frontend's origin
   credentials: true, // Allow cookies/headers
 };
 
