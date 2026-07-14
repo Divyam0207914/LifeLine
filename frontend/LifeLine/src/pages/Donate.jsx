@@ -1,16 +1,9 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../utils/axiosConfig";
 import { useNavigate } from "react-router-dom";
 
 const bloodGroups = [
-  "A+",
-  "A-",
-  "B+",
-  "B-",
-  "AB+",
-  "AB-",
-  "O+",
-  "O-",
+  "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"
 ];
 
 const Donate = () => {
@@ -22,25 +15,44 @@ const Donate = () => {
   });
 
   const [error, setError] = useState("");
+  const [isLocating, setIsLocating] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
+  const submitDonorData = async (latitude = null, longitude = null) => {
     try {
-      const res = await axios.post("https://lifeline-backend-lcwo.onrender.com/api/donor/create", form, {
-        withCredentials: true,
-      });
+      const payload = { ...form, latitude, longitude };
+      const res = await axiosInstance.post("/donor/create", payload);
       console.log("Success:", res.data);
       navigate("/donor-profile");
     } catch (err) {
       console.error("Error:", err.response?.data);
       setError(err.response?.data?.message || "Something went wrong");
+    } finally {
+      setIsLocating(false);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+    setIsLocating(true);
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          submitDonorData(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+          console.warn("Geolocation denied or failed. Submitting without coordinates.");
+          submitDonorData(); // Submit without coordinates
+        }
+      );
+    } else {
+      submitDonorData();
     }
   };
 
@@ -103,9 +115,10 @@ const Donate = () => {
 
         <button
           type="submit"
-          className="w-full bg-pink-500 text-white py-2 rounded-md hover:bg-pink-600 transition"
+          disabled={isLocating}
+          className="w-full bg-pink-500 text-white py-2 rounded-md hover:bg-pink-600 transition disabled:bg-pink-300"
         >
-          Submit
+          {isLocating ? "Locating & Submitting..." : "Submit"}
         </button>
       </form>
     </div>

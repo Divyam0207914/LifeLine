@@ -37,9 +37,11 @@ const navigate = useNavigate();
     alert("Registration successful! Now login.");
     navigate("/login");
   } catch (err) {
-    console.error("❌ Register failed:", err.response?.data?.message);
-    alert(err.response?.data?.message || "Registration failed");
-  }
+  console.log("Full error:", err);
+  console.log("Response:", err.response);
+  console.log("Data:", err.response?.data);
+  console.log("Status:", err.response?.status);
+}
   };
 
   return (

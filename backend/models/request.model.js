@@ -8,6 +8,10 @@ const requestSchema = new mongoose.Schema(
     location: String,
     bloodGroup: String,
     message: String,
+    hospitalName: String,
+    address: String,
+    urgency: String,
+    isBroadcast: { type: Boolean, default: false },
     requestedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

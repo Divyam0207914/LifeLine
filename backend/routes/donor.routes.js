@@ -4,11 +4,11 @@ import {
   getAllAvailableDonors,
   getMyDonorProfile,
   toggleAvailability,
-  getDonationHistory,
-  getMyRequests
-} from '../controllers/donor.cotroller.js';
+  getDonationHistory
+} from '../controllers/donor.controller.js';
 
-import {authMiddleware } from '../middelwares/auth.middelware.js';
+import { authMiddleware } from '../middlewares/auth.middleware.js';
+import Donor from '../models/donor.model.js';
 
 const donorRoutes = express.Router();
 
@@ -26,7 +26,6 @@ donorRoutes.get('/me', authMiddleware, getMyDonorProfile);
 
 
 donorRoutes.get('/history', authMiddleware, getDonationHistory);
-donorRoutes.get('/requests', authMiddleware, getMyRequests);
 
 
 donorRoutes.get('/status', authMiddleware, async (req, res) => {

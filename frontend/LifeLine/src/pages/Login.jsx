@@ -2,9 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axiosInstance from "../utils/axiosConfig";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const { login } = useAuth();
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -15,13 +19,9 @@ const Login = () => {
       const res = await axiosInstance.post("/user/login", formData);
       console.log("Login success:", res.data);
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user)); // ✅ Add this line
+      login(res.data.user, res.data.token);
 
       alert("Login Successful!");
-      console.log("Navigating...");
-      console.log(res.data); // Check the whole response
-
       navigate("/profile");
     } catch (err) {
       console.error("❌ Login failed:", err.response?.data?.message);

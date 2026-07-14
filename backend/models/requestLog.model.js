@@ -7,6 +7,11 @@ const requestLogSchema = new mongoose.Schema(
     toDonor: { type: mongoose.Schema.Types.ObjectId, ref: "Donor", required: true },
     bloodGroup: String,
     message: String,
+    status: {
+      type: String,
+      enum: ['Pending', 'Accepted', 'Travelling', 'Reached Hospital', 'Donation Completed', 'Cancelled'],
+      default: 'Pending'
+    }
   },
   { timestamps: true }
 );

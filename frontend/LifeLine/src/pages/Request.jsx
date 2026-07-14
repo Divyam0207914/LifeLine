@@ -19,14 +19,14 @@ const Request = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userRes = await axios.get("https://lifeline-backend-lcwo.onrender.com/api/user/me", {
+      const userRes = await axios.get("http://localhost:5005/api/user/me", {
         withCredentials: true,
       });
 
       const userId = userRes.data._id;
 
       await axios.post(
-        "https://lifeline-backend-lcwo.onrender.com/api/request-log",
+        "http://localhost:5005/api/request-log",
         {
           ...formData,
           requestedBy: userId,

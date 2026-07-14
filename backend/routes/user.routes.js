@@ -1,17 +1,19 @@
 import express from 'express';
 import { register, login, getProfile , getMe  } from '../controllers/user.controller.js';
-import{ authMiddleware } from '../middelwares/auth.middelware.js';
+import { authMiddleware } from '../middlewares/auth.middleware.js';
 
+
+import { validateUserRegistration, validateUserLogin } from '../middlewares/validation.middleware.js';
 
 const router = express.Router();
 
 // @route   POST /api/user/register
 // @desc    Register a new user
-router.post('/register', register);
+router.post('/register', validateUserRegistration, register);
 
 // @route   POST /api/user/login
 // @desc    Login user and return token
-router.post('/login', login);
+router.post('/login', validateUserLogin, login);
 
 // @route   GET /api/user/profile
 // @desc    Get current logged-in user's profile

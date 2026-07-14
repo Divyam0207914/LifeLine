@@ -1,8 +1,8 @@
 
 import express from "express";
 import Request from "../models/request.model.js";
-import { authMiddleware } from "../middelwares/auth.middelware.js";
-import { getUserRequests , getReceivedRequests } from '../controllers/request.controller.js';
+import { authMiddleware } from "../middlewares/auth.middleware.js";
+import { getUserRequests, broadcastRequest } from '../controllers/request.controller.js';
 const router = express.Router();
 
 router.post("/", authMiddleware, async (req, res) => {
@@ -27,8 +27,8 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 
-router.get('/my-requests', authMiddleware , getUserRequests);
+router.post('/broadcast', authMiddleware, broadcastRequest);
 
-router.get("/received-requests", authMiddleware, getReceivedRequests);
+router.get('/my-requests', authMiddleware , getUserRequests);
 
 export default router;
