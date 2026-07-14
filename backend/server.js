@@ -27,6 +27,7 @@ const server = http.createServer(app);
 const corsOptions = {
   origin: [
     "https://lifeline-vert.vercel.app",
+   "https://lifeline-divyam.vercel.app/",
     "http://localhost:5173",
   ],// your frontend's origin
   credentials: true, // Allow cookies/headers
