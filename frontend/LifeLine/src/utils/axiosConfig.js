@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5005/api", // ✅ adjust if your backend runs somewhere else
+  baseURL: "https://lifeline-backend-lcwo.onrender.com/api", // ✅ adjust if your backend runs somewhere else
   headers: {
     "Content-Type": "application/json",
   },

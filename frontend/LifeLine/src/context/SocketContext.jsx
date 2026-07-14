@@ -15,7 +15,7 @@ export const SocketProvider = ({ children }) => {
 
     try {
       const user = JSON.parse(userString);
-      const newSocket = io("http://localhost:5005", {
+      const newSocket = io("https://lifeline-backend-lcwo.onrender.com", {
         transports: ["websocket", "polling"],
       });
 

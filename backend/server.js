@@ -16,9 +16,8 @@ import rateLimit from "express-rate-limit";
 dotenv.config();
  
 const app = express();
-const  PORT =  process.env.PORT || 5005 ;
-console.log("===== SERVER FILE STARTED =====");
-console.log("PORT from env:", process.env.PORT);
+const  PORT =  process.env.PORT || 5005  || " https://lifeline-backend-lcwo.onrender.com ";
+
 // Connect to MongoDB
 connectDB();
 

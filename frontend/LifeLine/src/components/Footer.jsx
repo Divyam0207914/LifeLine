@@ -9,8 +9,7 @@ const Footer = () => {
             LifeLine<span className="text-pink-500">.</span>
           </h1>
           <p className="text-gray-600 mt-2">
-            Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem ipsum has been the industry's standard dummy text ever since the 1500s.
+            LifeLink streamlines the blood donation process by enabling real-time donor discovery, emergency blood requests, and location-based matching. Built with the MERN stack, it provides a secure, responsive, and user-friendly experience for donors, recipients, and administrators.
           </p>
         </div>
 
